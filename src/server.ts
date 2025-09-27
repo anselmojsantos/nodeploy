@@ -26,8 +26,9 @@ app.post('/users', async (request, reply) => {
     return reply.status(201).send();
 });
 
-const port = Number(process.env.PORT) || 3000;
-
-app.listen({ port }, () => {
-  console.log(`HTTP server running! PORT: ${port}`);
-});
+app.listen({
+    host: '0.0.0.0',
+    port : process.env.PORT ? Number(process.env.PORT): 3000
+}).then(() => {
+    console.log('HTTP server running! Port:', Number(process.env.PORT));
+})
